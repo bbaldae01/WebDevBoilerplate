@@ -6,8 +6,22 @@
 
 	<cache />
 	
+	<resultMap type="AccountVO" id="accountResultMap">
+		<id property="seq" column="seq" />
+		<result property="username" column="username" />
+		<result property="password" column="password" />
+		<result property="role" column="role" />
+		<result property="enabled" column="enabled" />
+		<result property="mail" column="mail" />
+		<result property="sms" column="sms" />
+	</resultMap>
+	
 	<select id="selectAccountByUsername" parameterType="string" resultType="AccountVO">
-		SELECT seq, userid, password FROM TB_ACCT WHERE userid = #{string}
+		SELECT seq, username, password, role, enabled, mail, sms FROM TB_ACCT WHERE username = #{string}
+	</select>
+	
+	<select id="selectAccounts" resultMap="accountResultMap">
+		SELECT seq, username, password, role, enabled, mail, sms FROM TB_ACCT
 	</select>
 
 </mapper>

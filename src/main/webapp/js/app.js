@@ -6,6 +6,8 @@ require.config({
 		app : '../app',
 		views : '../app/views',
 		models : '../app/models',
+		collections : '../app/collections',
+		routers : '../app/routers',
 		tpl : '../tpl',
 		nls : '../nls',
 		bootstrap : '../../bootstrap/js/bootstrap'
@@ -35,8 +37,22 @@ require.config({
 	}
 });
 
-require([ 'jquery', 'backbone', 'app/router' ], function($, Backbone, Router) {
+require([ 'jquery', 'underscore', 'backbone', 'views/common/commonView', 'routers/router' ], function($, _, Backbone, CommonView, Router) {
+	var _sync = Backbone.sync;
+	Backbone.sync = function(method, model, options) {
+		options.error = function(model, response, options) {
+			console.log('fetch error');
+			console.log(model);
+			console.log(response);
+			console.log(options);
+			if (options === 'Unauthorized') {
+				eval(model.responseText);
+			}
+		};
+
+		_sync(method, model, options);
+	};
 	console.log('start app');
-	var router = new Router();
+
 	Backbone.history.start();
 });

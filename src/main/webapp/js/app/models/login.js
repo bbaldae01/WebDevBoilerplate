@@ -38,6 +38,6 @@ define(function(require) {
 		}
 	});
 
-	return new SignInModel();
+	return SignInModel;
 
 });

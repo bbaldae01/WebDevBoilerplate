@@ -6,5 +6,6 @@ define({
 	"cancel" : "Cancel",
 	"ok" : "OK",
 	"requireUsername" : "ID is mandatory.",
-	"requirePassword" : "Password is mandatory."
+	"requirePassword" : "Password is mandatory.",
+	"requireRole" : "Role is mandatory."
 });

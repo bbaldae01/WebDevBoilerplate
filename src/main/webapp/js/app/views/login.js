@@ -8,11 +8,8 @@ define(function(require) {
 	var Backbone = require('backbone');
 
 	// require model
-	var loginModel = require('models/sysacc/login');
-
-	// require common view
-	// var AlertView = require('views/common/alert');
-	// var ModalView = require('views/common/modal');
+	var LoginModel = require('models/login');
+	var loginModel = new LoginModel();
 
 	// require template
 	var tpl = require('text!tpl/login.html');
@@ -23,13 +20,16 @@ define(function(require) {
 
 	return Backbone.View.extend({
 		model : loginModel,
-		initialize : function() {
+		initialize : function(options) {
 			// avoid 'change' event, because model.set method trigger 'change'
 			// event. If this use and 'change' event don't need, use
 			// {silent:true} option.
 			// this.listenTo(this.model, 'change', this.success);
 		},
 		render : function() {
+			this.$el.empty();
+			this.$el.removeClass();
+			
 			this.$el.html(template());
 			$('#userid').prop('placeholder', locale.id);
 			$('#password').prop('placeholder', locale.password);
@@ -90,7 +90,7 @@ define(function(require) {
 		success : function() {
 			console.log(loginModel.toJSON());
 			if (loginModel.get('successLogin') == 'Y') {
-				location.hash = '#employeeList';
+				location.hash = '#dashboard';
 			} else {
 				Backbone.AlertView.msg($('#alert'), {
 					alert : loginModel.get('returnType'),

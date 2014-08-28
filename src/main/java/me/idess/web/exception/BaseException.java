@@ -8,6 +8,7 @@ import me.idess.web.model.CommonBean;
 import me.idess.web.model.CommonBean.ReturnType;
 
 import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 
 public class BaseException extends Exception {
 	
@@ -78,11 +79,12 @@ public class BaseException extends Exception {
 	}
 	
 	public BaseException(MessageSource messageSource, String messageKey) {
-		this(messageSource, messageKey, null, null, Locale.getDefault(), null);
+		this(messageSource, messageKey, null, null, LocaleContextHolder.getLocale(), null);
 	}
 	
 	public BaseException(MessageSource messageSource, String messageKey, Throwable wrappedException) {
-		this(messageSource, messageKey, null, null, Locale.getDefault(), wrappedException);
+		this(messageSource, messageKey, null, null, LocaleContextHolder.getLocale(),
+				wrappedException);
 	}
 	
 	public BaseException(MessageSource messageSource, String messageKey, Locale locale,
@@ -92,13 +94,18 @@ public class BaseException extends Exception {
 	
 	public BaseException(MessageSource messageSource, String messageKey,
 			Object[] messageParameters, Throwable wrappedException) {
-		this(messageSource, messageKey, messageParameters, null, Locale.getDefault(),
+		this(messageSource, messageKey, messageParameters, null, LocaleContextHolder.getLocale(),
 				wrappedException);
 	}
 	
 	public BaseException(MessageSource messageSource, String messageKey,
+			Object[] messageParameters, Locale locale, Throwable wrappedException) {
+		this(messageSource, messageKey, messageParameters, null, locale, wrappedException);
+	}
+	
+	public BaseException(MessageSource messageSource, String messageKey,
 			Object[] messageParameters, String defaultMessage, Throwable wrappedException) {
-		this(messageSource, messageKey, messageParameters, defaultMessage, Locale.getDefault(),
+		this(messageSource, messageKey, messageParameters, defaultMessage, LocaleContextHolder.getLocale(),
 				wrappedException);
 	}
 	

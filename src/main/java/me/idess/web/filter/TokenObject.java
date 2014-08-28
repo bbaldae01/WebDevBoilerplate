@@ -5,18 +5,10 @@ import java.util.Map;
 
 import me.idess.web.util.NumberUtil;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * 사용자 토큰 관련
- * 
- * @version 1.0
- * @author jrkang
  */
 public class TokenObject {
-	
-	private static final Logger			logger	= LoggerFactory.getLogger(TokenObject.class);
 	
 	private static Map<String, String>	userToken;
 	
@@ -35,8 +27,6 @@ public class TokenObject {
 	 *            userId
 	 * @return String
 	 * @throws
-	 * @author jrkang
-	 * @date 2014-07-17
 	 */
 	public static String getToken(String userId) {
 		String token = null;
@@ -55,8 +45,6 @@ public class TokenObject {
 	 *            userId, String token
 	 * @return
 	 * @throws
-	 * @author jrkang
-	 * @date 2014-07-17
 	 */
 	public static void setToken(String userId, String token) {
 		try {
@@ -73,6 +61,10 @@ public class TokenObject {
 	 */
 	public static String makeToken(String username) {
 		return username + NumberUtil.getRandomValue();
+	}
+	
+	public static int getTokenCount() {
+		return userToken.size();
 	}
 	
 }

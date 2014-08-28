@@ -8,7 +8,8 @@ define({
 		"cancel" : "취소",
 		"ok" : "확인",
 		"requireUsername" : "아이디를 넣어주십시오.",
-		"requirePassword" : "비밀번호를 넣어주십시오."
+		"requirePassword" : "비밀번호를 넣어주십시오.",
+		"requireRole" : "역할을 선택해 주십시오."
 	},
 	"en-us" : true
 });
